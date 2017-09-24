@@ -37,27 +37,25 @@
                     <p:commandButton value="Eliminar" actionListener="#{usuarioController.eliminar(item)}"  update="listUsuario" />
                 </p:column>
             </p:dataTable>
-                 <p:commandLink action="add.xhtml" value="Crear Usuario" />
+                
             </h:form>
        
         
         <f:view>
 
 
-            <h:form>
-                <h1><h:outputText value="Create/Edit"/></h1>
+            <h:form >
+                <h1><h:outputText value="Crear"/></h1>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Cedula:" for="cedula" />
-                    <h:inputText id="cedula" value="#{usuarioController.user.cedula}" title="Cedula" />
+                    <h:inputText  id="cedula" value="#{usuarioController.user.cedula}" title="Cedula" />
                     <h:outputLabel value="Nombre:" for="nombre" />
                     <h:inputText id="nombre" value="#{usuarioController.user.nombre}" title="Nombre" />
                     <h:outputLabel value="Contraseña:" for="contraseña" />
                     <h:inputText id="contraseña" value="#{usuarioController.user.contraseña}" title="Contraseña" />
                     <h:outputLabel value="Tipo:" for="tipo" />
                     <h:inputText id="tipo" value="#{usuarioController.user.tipo}" title="Tipo" />
-                    <h:outputLabel value="NumeroRequisicion:" for="numeroRequisicion" />
-                    <h:inputText id="numeroRequisicion" value="#{usuarioController.user.numeroRequisicion}" title="NumeroRequisicion"  />
-                    <p:commandButton value="ADD" actionListener="#{usuarioController.registrar()}" update=":form-list:listUsuario" /> 
+                   <p:commandButton value="ADD" actionListener="#{usuarioController.registrar()}"  update=":form-list:listUsuario" /> 
                 </h:panelGrid>
             </h:form>
         </f:view>
@@ -69,11 +67,11 @@
              <f:view>
 
 
-                 <h:form>
+                 <h:form >
                      <h1><h:outputText value="Editar Usuario"/></h1>
                      <h:panelGrid columns="2">
                          <h:outputLabel value="Cedula:" for="cedula" />
-                         <h:inputText id="cedula" value="#{usuarioController.user.cedula}" title="Cedula" />
+                         <h:inputText id="cedula"  value="#{usuarioController.user.cedula}" title="Cedula" />
                          <h:outputLabel value="Nombre:" for="nombre" />
                          <h:inputText id="nombre" value="#{usuarioController.user.nombre}" title="Nombre" />
                          <h:outputLabel value="Contraseña:" for="contraseña" />
@@ -81,7 +79,7 @@
                          <h:outputLabel value="Tipo:" for="tipo" />
                          <h:inputText id="tipo" value="#{usuarioController.user.tipo}" title="Tipo" />
                          <h:outputLabel value="NumeroRequisicion:" for="numeroRequisicion" />
-                         <h:inputText id="numeroRequisicion" value="#{usuarioController.user.numeroRequisicion}" title="NumeroRequisicion" />
+                         <h:inputText disabled="true" id="numeroRequisicion" value="#{usuarioController.user.numeroRequisicion}" title="NumeroRequisicion" />
                       <p:commandButton value="Modificar" actionListener="#{usuarioController.modificar()}"  update=":form-list:listUsuario" />
                     <p:commandButton value="cancelar"  onclick="PF('widModify').hide();" />
                    

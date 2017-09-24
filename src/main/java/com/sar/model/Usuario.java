@@ -22,6 +22,7 @@ import javax.validation.constraints.NotNull;
 public class Usuario implements Serializable {
    
    @Id
+   @Column(unique = true)
    @NotNull
    private String cedula;
    @Column(name = "nombre")
@@ -38,7 +39,7 @@ public class Usuario implements Serializable {
    //ver si es necesario en usuario
     @Column(name = "numrequisicion")
     @NotNull
-   private short numeroRequisicion;
+   private short numeroRequisicion =1;
 
 
     public String getCedula() {
