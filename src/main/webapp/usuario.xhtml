@@ -11,11 +11,11 @@
            
         <h:form id="form-list">
                  <h1><h:outputText value="Usuarios"/></h1>
-                <p:dataTable id="listUsuario" value="#{usuarioController.listar()}" var="item">
-                    <p:column headerText="Cedula" filterBy="#{item.cedula}" filterMatchMode="contains">
+                 <p:dataTable id="listUsuario" value="#{usuarioController.listar()}" var="item">
+                    <p:column headerText="Cedula">
                         <p:outputLabel value="#{item.cedula}"/>
                 </p:column>
-                    <p:column headerText="Nombre Completo" filterBy="#{item.nombre}" filterMatchMode="contains">
+                    <p:column headerText="Nombre Completo" >
                         <p:outputLabel value="#{item.nombre}"/>
                 </p:column>
                 
@@ -33,9 +33,10 @@
                 </p:column>
                 
                 <p:column headerText="Opciones">
-                    <p:commandButton value="Modificar" actionListener="#{usuarioController.edit(item)}" oncomplete="PF('widModify').show();" update="dialogo"   />
+                   <p:commandButton value="Modificar" actionListener="#{usuarioController.edit(item)}" oncomplete="PF('widModify').show();" update="dialogo" />
                     <p:commandButton value="Eliminar" actionListener="#{usuarioController.eliminar(item)}"  update="listUsuario" />
                 </p:column>
+                     
             </p:dataTable>
                 
             </h:form>
@@ -66,7 +67,7 @@
          <p:dialog id="dialogo" widgetVar="widModify" header="Modificar Categoria">
 
 
-             <f:view>
+            <f:view>
 
 
                  <h:form >

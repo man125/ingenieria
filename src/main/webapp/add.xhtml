@@ -12,20 +12,64 @@
 
 
             <h:form>
-                <h1><h:outputText value="Create/Edit"/></h1>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="Cedula:" for="cedula" />
-                    <h:inputText id="cedula" value="#{usuarioController.user.cedula}" title="Cedula" />
-                    <h:outputLabel value="Nombre:" for="nombre" />
-                    <h:inputText id="nombre" value="#{usuarioController.user.nombre}" title="Nombre" />
-                    <h:outputLabel value="Contraseña:" for="contraseña" />
-                    <h:inputText id="contraseña" value="#{usuarioController.user.contraseña}" title="Contraseña" />
-                    <h:outputLabel value="Tipo:" for="tipo" />
-                    <h:inputText id="tipo" value="#{usuarioController.user.tipo}" title="Tipo" />
-                    <h:outputLabel value="NumeroRequisicion:" for="numeroRequisicion" />
-                    <h:inputText id="numeroRequisicion" value="#{usuarioController.user.numeroRequisicion}" title="NumeroRequisicion" />
-                    <h:commandButton value="Agregar" action="#{usuarioController.registrar()}"/>
-                </h:panelGrid>
+                <h1><h:outputText value="List"/></h1>
+                <p:dataTable id="listUsuario" value="#{usuarioController.listar()}" var="item" editable="true">
+                    <p:column headerText="Cedula">
+                        <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{item.cedula}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText value="#{item.cedula}"/>
+                        </f:facet>
+                         
+                        </p:cellEditor>
+                    </p:column>
+                     <p:column headerText="Nombre">
+                        <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{item.nombre}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText value="#{item.nombre}"/>
+                        </f:facet>
+                         
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Contraseña">
+                        <f:facet name="Contraseña">
+                            <h:outputText value="Contraseña"/>
+                        </f:facet>
+                        <h:outputText value="#{item.contraseña}"/>
+                    </p:column>
+                     <p:column headerText="Tipo">
+                        <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{item.tipo}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText value="#{item.tipo}"/>
+                        </f:facet>
+                         
+                        </p:cellEditor>
+                    </p:column>
+                         <p:column headerText="Requisicion">
+                        <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{item.numeroRequisicion}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText value="#{item.numeroRequisicion}"/>
+                        </f:facet>
+                         
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column style="width:32px">
+                    <p:rowEditor/>
+                    </p:column>
+                    
+                    <p:ajax event="rowEdit" listener="#{usuarioController.modificar()}" update="listUsuario" />
+                </p:dataTable>
             </h:form>
         </f:view>
 

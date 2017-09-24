@@ -86,6 +86,15 @@ public class UsuarioController implements Serializable{
       // return "categoria";
     }
     
+     public void modificarRow(Usuario us){
+         try{
+            facade.edit(us);
+           // this.user = new Usuario();
+        }catch(Exception e){
+            System.err.println(e.getMessage());
+        }
+      // return "categoria";
+    }
     public void edit(Usuario c){
         this.user = c;
         //return "editar";
