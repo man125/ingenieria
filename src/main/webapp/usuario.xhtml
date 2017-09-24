@@ -33,7 +33,7 @@
                 </p:column>
                 
                 <p:column headerText="Opciones">
-                    <p:commandButton value="Modificar"   />
+                    <p:commandButton value="Modificar" actionListener="#{usuarioController.edit(item)}" oncomplete="PF('widModify').show();" update="dialogo"   />
                     <p:commandButton value="Eliminar" actionListener="#{usuarioController.eliminar(item)}"  update="listUsuario" />
                 </p:column>
             </p:dataTable>
@@ -61,6 +61,36 @@
                 </h:panelGrid>
             </h:form>
         </f:view>
+        
+        
+         <p:dialog id="dialogo" widgetVar="widModify" header="Modificar Categoria">
+
+
+             <f:view>
+
+
+                 <h:form>
+                     <h1><h:outputText value="Editar Usuario"/></h1>
+                     <h:panelGrid columns="2">
+                         <h:outputLabel value="Cedula:" for="cedula" />
+                         <h:inputText id="cedula" value="#{usuarioController.user.cedula}" title="Cedula" />
+                         <h:outputLabel value="Nombre:" for="nombre" />
+                         <h:inputText id="nombre" value="#{usuarioController.user.nombre}" title="Nombre" />
+                         <h:outputLabel value="Contraseña:" for="contraseña" />
+                         <h:inputText id="contraseña" value="#{usuarioController.user.contraseña}" title="Contraseña" />
+                         <h:outputLabel value="Tipo:" for="tipo" />
+                         <h:inputText id="tipo" value="#{usuarioController.user.tipo}" title="Tipo" />
+                         <h:outputLabel value="NumeroRequisicion:" for="numeroRequisicion" />
+                         <h:inputText id="numeroRequisicion" value="#{usuarioController.user.numeroRequisicion}" title="NumeroRequisicion" />
+                      <p:commandButton value="Modificar" actionListener="#{usuarioController.modificar()}"  update=":form-list:listUsuario" />
+                    <p:commandButton value="cancelar"  onclick="PF('widModify').hide();" />
+                   
+                     </h:panelGrid>
+                 </h:form>
+             </f:view>
+
+        </p:dialog>
+
 
 
     </h:body>
