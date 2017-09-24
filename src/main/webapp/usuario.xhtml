@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+           
+        <h:form id="form-list">
+                 <h1><h:outputText value="Usuarios"/></h1>
+                <p:dataTable id="listUsuario" value="#{usuarioController.listar()}" var="item">
+                    <p:column headerText="Cedula" filterBy="#{item.cedula}" filterMatchMode="contains">
+                        <p:outputLabel value="#{item.cedula}"/>
+                </p:column>
+                    <p:column headerText="Nombre Completo" filterBy="#{item.nombre}" filterMatchMode="contains">
+                        <p:outputLabel value="#{item.nombre}"/>
+                </p:column>
+                
+                <p:column headerText="Contraseña">
+                    <p:outputLabel value="#{item.contraseña}"/>
+                </p:column>
+                    
+                    
+                <p:column headerText="Rol">
+                    <p:outputLabel value="#{item.tipo}"/>
+                </p:column>
+                    
+                <p:column headerText="Numero de Requisicion">
+                    <p:outputLabel value="#{item.numeroRequisicion}"/>
+                </p:column>
+                
+                <p:column headerText="Opciones">
+                    <p:commandButton value="Modificar"   />
+                    <p:commandButton value="Eliminar" actionListener="#{usuarioController.eliminar(item)}"  update="listUsuario" />
+                </p:column>
+            </p:dataTable>
+                 <p:commandLink action="add.xhtml" value="Crear Usuario" />
+            </h:form>
+       
+        
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Cedula:" for="cedula" />
+                    <h:inputText id="cedula" value="#{usuarioController.user.cedula}" title="Cedula" />
+                    <h:outputLabel value="Nombre:" for="nombre" />
+                    <h:inputText id="nombre" value="#{usuarioController.user.nombre}" title="Nombre" />
+                    <h:outputLabel value="Contraseña:" for="contraseña" />
+                    <h:inputText id="contraseña" value="#{usuarioController.user.contraseña}" title="Contraseña" />
+                    <h:outputLabel value="Tipo:" for="tipo" />
+                    <h:inputText id="tipo" value="#{usuarioController.user.tipo}" title="Tipo" />
+                    <h:outputLabel value="NumeroRequisicion:" for="numeroRequisicion" />
+                    <h:inputText id="numeroRequisicion" value="#{usuarioController.user.numeroRequisicion}" title="NumeroRequisicion"  />
+                    <p:commandButton value="ADD" actionListener="#{usuarioController.registrar()}" update=":form-list:listUsuario" /> 
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+
+
+    </h:body>
+</html>
+
