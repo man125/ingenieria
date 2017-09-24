@@ -44,9 +44,9 @@
         <f:view>
 
 
-            <h:form >
+            <h:form id="formCrear">
                 <h1><h:outputText value="Crear"/></h1>
-                <h:panelGrid columns="2">
+                <h:panelGrid id="panel" columns="2">
                     <h:outputLabel value="Cedula:" for="cedula" />
                     <h:inputText  id="cedula" value="#{usuarioController.user.cedula}" title="Cedula" />
                     <h:outputLabel value="Nombre:" for="nombre" />
@@ -56,6 +56,8 @@
                     <h:outputLabel value="Tipo:" for="tipo" />
                     <h:inputText id="tipo" value="#{usuarioController.user.tipo}" title="Tipo" />
                    <p:commandButton value="ADD" actionListener="#{usuarioController.registrar()}"  update=":form-list:listUsuario" /> 
+                   <p:commandButton value="limpiar" update="panel" process="@this" actionListener="#{usuarioController.reset}"  style="margin-right:20px;" />
+ 
                 </h:panelGrid>
             </h:form>
         </f:view>

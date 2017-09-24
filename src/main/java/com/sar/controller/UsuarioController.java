@@ -16,6 +16,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -90,4 +91,7 @@ public class UsuarioController implements Serializable{
         //return "editar";
     }
     
+     public void reset() {
+        RequestContext.getCurrentInstance().reset("formCrear:panel");
+    }
 }
