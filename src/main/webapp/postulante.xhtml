@@ -11,9 +11,9 @@
         <f:view>
 
 
-            <h:form>
+            <h:form id="table">
                 <h1><h:outputText value="List"/></h1>
-                <p:dataTable value="#{posController.listar()}" var="item">
+                <p:dataTable id="listP" value="#{posController.listar()}" var="item">
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Cedula_postulante"/>
@@ -63,12 +63,53 @@
                        
                         <h:outputText value="#{item.codigoEstado.detalle}"/>
                     </p:column>
+                     <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Opciones"/>
+                        </f:facet>
+                       
+                         </p:column>
                 </p:dataTable>
-             <p:link value="agregar postulante" outcome="addpostulante" />
+            <p:commandButton value="Agregar" oncomplete="PF('widModify').show();" update="dialogo"  />
+                    
                   
             </h:form>
         </f:view>
+        
+        
+        <p:dialog id="dialogo" widgetVar="widModify" header="Agregar Postulante">
+        <f:view>
 
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Cedula_postulante:" for="cedula_postulante" />
+                    <p:inputText id="cedula_postulante" value="#{posController.post.cedulaPostulante}" title="Cedula_postulante" />
+                    <p:outputLabel value="Licencia:" for="licencia" />
+                    <p:inputText id="licencia" value="#{posController.post.licenciaConducir}" title="Licencia" />
+                    <p:outputLabel value="Nombre:" for="nombre" />
+                    <p:inputText id="nombre" value="#{posController.post.nombreCompleto}" title="Nombre" />
+                    <p:outputLabel value="Escolaridad:" for="escolaridad" />
+                    <p:inputText id="escolaridad" value="#{posController.post.escolaridad}" title="Escolaridad" />
+                    <p:outputLabel value="Edad:" for="edad" />
+                    <p:inputText id="edad" value="#{posController.post.edad}" title="Edad" />
+                    <p:outputLabel value="Experiencia:" for="experiencia" />
+                    <p:inputText id="experiencia" value="#{posController.post.experienciaLaboral}" title="Experiencia" />
+                    <p:outputLabel value="Titulo:" for="titulo" />
+                    <p:inputText id="titulo" value="#{posController.post.titulo}" title="Titulo" />
+                    <p:outputLabel value="CodigoEstado:" for="codigoEstado" />
+                    <p:selectOneMenu id="codigoEstado" value="#{posController.es.codigoEstado}" required="true" requiredMessage="The CodigoEstado field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{listController.listaEstados()}" var="lis" itemLabel="#{lis.detalle}" itemValue="#{lis.codigoEstado}"/>
+                    </p:selectOneMenu>
+                    <p:commandButton value="SAVE" action="#{posController.agregar()}" update=":table:listP" onclick="PF('widModify').hide();" />
+                    <p:commandButton value="cancelar"  onclick="PF('widModify').hide();" />
+                </p:panelGrid>
+                  
+            </h:form>
+        </f:view>
+       </p:dialog>
     </h:body>
 </html>
 
