@@ -6,8 +6,10 @@
 package com.sar.controller;
 
 import com.sar.model.Estado;
+import com.sar.model.Lugares;
 import com.sar.model.Postulante;
 import com.sar.session.EstadoFacadeLocal;
+import com.sar.session.LugaresFacadeLocal;
 import com.sar.session.PostulanteFacadeLocal;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -28,9 +30,12 @@ import javax.faces.view.ViewScoped;
 public class listasController implements Serializable {
 
     private  Estado es = new Estado();
+    private Lugares lug = new Lugares();
  
     @EJB
     private EstadoFacadeLocal estadoFacade;
+    @EJB
+    private LugaresFacadeLocal lugarFacade;
     
  
  
@@ -45,6 +50,12 @@ public class listasController implements Serializable {
         return this.estadoFacade.findAll();
         
     }
+    
+    public List<Lugares> listaLugares(){
+        return this.lugarFacade.findAll();
+        
+    }
+    
    /* 
     public String agregar(){
         try{

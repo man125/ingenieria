@@ -6,8 +6,10 @@
 package com.sar.controller;
 
 import com.sar.model.Estado;
+import com.sar.model.Lugares;
 import com.sar.model.Postulante;
 import com.sar.session.EstadoFacadeLocal;
+import com.sar.session.LugaresFacadeLocal;
 import com.sar.session.PostulanteFacadeLocal;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -29,13 +31,17 @@ public class postulanteController implements Serializable {
 
     @EJB
     private PostulanteFacadeLocal facade;
-
+   /*
     @EJB
     private EstadoFacadeLocal estadoFacade;
     
+    @EJB
+    private LugaresFacadeLocal lugaresFacade;
+    */
+    
    private  Postulante post = new Postulante();
    private  Estado es = new Estado();
- 
+   private  Lugares lugar = new Lugares();
 
     public Postulante getPost() {
         return post;
@@ -51,6 +57,14 @@ public class postulanteController implements Serializable {
 
     public void setEs(Estado es) {
         this.es = es;
+    }
+
+    public Lugares getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(Lugares lugar) {
+        this.lugar = lugar;
     }
 
    
@@ -72,11 +86,13 @@ public class postulanteController implements Serializable {
     public String agregar(){
         try{
         this.post.setCodigoEstado(es);
-        System.out.println(post.getCodigoEstado());
+        this.post.setResidencia(lugar);
+        System.out.println(post.getResidencia());
         this.facade.create(this.post);
        //limpiar
         this.post = new Postulante();
         this.es = new Estado();
+        this.lugar= new Lugares();
         }catch(Exception e){
             System.out.println(e.toString());
         }

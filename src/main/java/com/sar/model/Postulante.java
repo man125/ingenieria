@@ -33,7 +33,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Postulante.findByNombreCompleto", query = "SELECT p FROM Postulante p WHERE p.nombreCompleto = :nombreCompleto")
     , @NamedQuery(name = "Postulante.findByEscolaridad", query = "SELECT p FROM Postulante p WHERE p.escolaridad = :escolaridad")
     , @NamedQuery(name = "Postulante.findByEdad", query = "SELECT p FROM Postulante p WHERE p.edad = :edad")
-    , @NamedQuery(name = "Postulante.findByTitulo", query = "SELECT p FROM Postulante p WHERE p.titulo = :titulo")
     , @NamedQuery(name = "Postulante.findByExperienciaLaboral", query = "SELECT p FROM Postulante p WHERE p.experienciaLaboral = :experienciaLaboral")
     , @NamedQuery(name = "Postulante.findByEspecialidad", query = "SELECT p FROM Postulante p WHERE p.especialidad = :especialidad")
     , @NamedQuery(name = "Postulante.findByLicenciaConducir", query = "SELECT p FROM Postulante p WHERE p.licenciaConducir = :licenciaConducir")})
@@ -54,9 +53,6 @@ public class Postulante implements Serializable {
     private String escolaridad;
     @Column(name = "EDAD")
     private BigInteger edad;
-    @Size(max = 20)
-    @Column(name = "TITULO")
-    private String titulo;
     @Size(max = 100)
     @Column(name = "EXPERIENCIA_LABORAL")
     private String experienciaLaboral;
@@ -69,6 +65,9 @@ public class Postulante implements Serializable {
     @JoinColumn(name = "CODIGO_ESTADO", referencedColumnName = "CODIGO_ESTADO")
     @ManyToOne
     private Estado codigoEstado;
+    @JoinColumn(name = "RESIDENCIA", referencedColumnName = "CODIGO")
+    @ManyToOne
+    private Lugares residencia;
 
     public Postulante() {
     }
@@ -109,14 +108,6 @@ public class Postulante implements Serializable {
         this.edad = edad;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
     public String getExperienciaLaboral() {
         return experienciaLaboral;
     }
@@ -147,6 +138,14 @@ public class Postulante implements Serializable {
 
     public void setCodigoEstado(Estado codigoEstado) {
         this.codigoEstado = codigoEstado;
+    }
+
+    public Lugares getResidencia() {
+        return residencia;
+    }
+
+    public void setResidencia(Lugares residencia) {
+        this.residencia = residencia;
     }
 
     @Override
